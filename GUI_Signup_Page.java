@@ -1,8 +1,11 @@
 package cs49J_Project;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 import javax.swing.*;
 
-public class GUI_Signup_Page {
+public class GUI_Signup_Page implements ActionListener{
 	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
@@ -108,8 +111,29 @@ public class GUI_Signup_Page {
 		
 		button = new JButton("Sign-Up");
 		button.setBounds(425, 175, 150, 50);
+		button.addActionListener(this);
 		panel.add(button);
 		
 		frame.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		try {
+			FileWriter fw = new FileWriter("Login.txt", true);
+			fw.write(usernameText.getText() + "\t" + passwordText.getText() + 
+					//"\t" + firstName.getText() + "\t" + lastName.getText() + 
+					//"\t" + address.getText() + "\t" + city.getText() + 
+					//"\t" + state.getText() + "\t" + zipCode.getText() + 
+					//"\t" + email.getText() + 
+					"\n");
+			fw.close();
+			JFrame complete = new JFrame();
+			JOptionPane.showMessageDialog(complete, "Sign-up Completed");
+			complete.dispose();
+		}catch (Exception f) {}
+		
+		new GUI_Login_Page();
+		frame.dispose();
 	}
 }
