@@ -1,8 +1,13 @@
 package cs49J_Project;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import javax.swing.*;
 
-public class GUI_Login_Page {
+public class GUI_Login_Page implements ActionListener{
 	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
@@ -38,8 +43,30 @@ public class GUI_Login_Page {
 		
 		button = new JButton("Login");
 		button.setBounds(275, 230, 80, 25);
+		button.addActionListener(this);
 		panel.add(button);
 		
 		frame.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String userName = usernameText.getText();
+		String passWord = String.valueOf(passwordText.getPassword());
+		try {
+			FileReader fr = new FileReader("Login.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while((line = br.readLine()) != null) {
+				if(line.equals(userName+ "\t" + passWord)) {
+					JFrame complete = new JFrame();
+					JOptionPane.showMessageDialog(complete, "Login");
+					complete.dispose();
+					frame.dispose();
+					break;
+				}
+			}
+			fr.close();
+		}catch(Exception f) {}
 	}
 }
