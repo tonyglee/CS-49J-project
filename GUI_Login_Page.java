@@ -63,6 +63,7 @@ public class GUI_Login_Page implements ActionListener{
 					JOptionPane.showMessageDialog(complete, "Login");
 					complete.dispose();
 					frame.dispose();
+					//add the GUI for main page
 					break;
 				}
 			}
