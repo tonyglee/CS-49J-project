@@ -7,7 +7,7 @@ import java.io.FileReader;
 
 import javax.swing.*;
 
-public class GUI_Login_Page implements ActionListener{
+public class GUI_Login_Page extends JFrame implements ActionListener{
 	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
@@ -16,6 +16,7 @@ public class GUI_Login_Page implements ActionListener{
 	private static JLabel passwordLabel = new JLabel();
 	private static JPasswordField passwordText = new JPasswordField();
 	private static JButton button = new JButton();
+	private static JButton button2 = new JButton();
 	
 	public GUI_Login_Page() {
 		
@@ -46,6 +47,10 @@ public class GUI_Login_Page implements ActionListener{
 		button.addActionListener(this);
 		panel.add(button);
 		
+		button2 = new JButton("Back");
+		button2.setBounds(425, 230, 80, 25);
+		button2.addActionListener(this);
+		panel.add(button2);
 		frame.setVisible(true);
 	}
 
@@ -53,21 +58,28 @@ public class GUI_Login_Page implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String userName = usernameText.getText();
 		String passWord = String.valueOf(passwordText.getPassword());
-		try {
-			FileReader fr = new FileReader("Login.txt");
-			BufferedReader br = new BufferedReader(fr);
-			String line;
-			while((line = br.readLine()) != null) {
-				if(line.equals(userName+ "\t" + passWord)) {
-					JFrame complete = new JFrame();
-					JOptionPane.showMessageDialog(complete, "Login");
-					complete.dispose();
-					frame.dispose();
-					//add the GUI for main page
-					break;
+		if(e.getSource() == button) {
+			try {
+				FileReader fr = new FileReader("Login.txt");
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				while((line = br.readLine()) != null) {
+					if(line.equals(userName+ "\t" + passWord)) {
+						JFrame complete = new JFrame();
+						JOptionPane.showMessageDialog(complete, "Login");
+						complete.dispose();
+						frame.dispose();
+						//add GUI for main page
+						break;
+					}
 				}
-			}
-			fr.close();
-		}catch(Exception f) {}
+				fr.close();
+			}catch(Exception f) {}
+		}
+		else if(e.getSource() == button2) {
+			new GUI_Welcome_Page();
+			frame.dispose();
+			
+		}
 	}
 }

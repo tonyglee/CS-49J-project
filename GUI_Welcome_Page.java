@@ -3,11 +3,10 @@ package cs49J_Project;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventObject;
 
 import javax.swing.*;
 
-public class GUI_Welcome_Page implements ActionListener{
+public class GUI_Welcome_Page extends JFrame implements ActionListener{
 	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
@@ -37,12 +36,12 @@ public class GUI_Welcome_Page implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == button) {
-			new GUI_Login_Page();
 			frame.dispose();
+			new GUI_Login_Page();
 		}
 		else if(e.getSource() == button2) {
-			new GUI_Signup_Page();
 			frame.dispose();
+			new GUI_Signup_Page();
 		}
 		
 	}

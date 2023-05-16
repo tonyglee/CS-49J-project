@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
 
-public class GUI_Signup_Page implements ActionListener{
+public class GUI_Signup_Page extends JFrame implements ActionListener{
 	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
@@ -28,6 +28,7 @@ public class GUI_Signup_Page implements ActionListener{
 	private static JTextField zipCode = new JTextField();
 	private static JTextField email = new JTextField();
 	private static JButton button = new JButton();
+	private static JButton button2 = new JButton();
 	
 	public GUI_Signup_Page() {
 		
@@ -114,26 +115,38 @@ public class GUI_Signup_Page implements ActionListener{
 		button.addActionListener(this);
 		panel.add(button);
 		
+		button2 = new JButton("Back");
+		button2.setBounds(425, 225, 150, 50);
+		button2.addActionListener(this);
+		panel.add(button2);
+		
 		frame.setVisible(true);
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-			FileWriter fw = new FileWriter("Login.txt", true);
-			fw.write(usernameText.getText() + "\t" + passwordText.getText() + 
-					//"\t" + firstName.getText() + "\t" + lastName.getText() + 
-					//"\t" + address.getText() + "\t" + city.getText() + 
-					//"\t" + state.getText() + "\t" + zipCode.getText() + 
-					//"\t" + email.getText() + 
-					"\n");
-			fw.close();
-			JFrame complete = new JFrame();
-			JOptionPane.showMessageDialog(complete, "Sign-up Completed");
-			complete.dispose();
-		}catch (Exception f) {}
-		
-		new GUI_Login_Page();
-		frame.dispose();
+		if(e.getSource() == button) {
+			try {
+				FileWriter fw = new FileWriter("Login.txt", true);
+				fw.write(usernameText.getText() + "\t" + passwordText.getText() + 
+						//"\t" + firstName.getText() + "\t" + lastName.getText() + 
+						//"\t" + address.getText() + "\t" + city.getText() + 
+						//"\t" + state.getText() + "\t" + zipCode.getText() + 
+						//"\t" + email.getText() + 
+						"\n");
+				fw.close();
+				JFrame complete = new JFrame();
+				JOptionPane.showMessageDialog(complete, "Sign-up Completed");
+				complete.dispose();
+			}catch (Exception f) {}
+			
+			new GUI_Login_Page();
+			frame.dispose();
+		}
+		if(e.getSource() == button2) {
+			frame.dispose();
+			new GUI_Welcome_Page();
+		}
 	}
 }
