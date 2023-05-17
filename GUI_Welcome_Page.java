@@ -28,12 +28,13 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		JPanel buttonPanel = new JPanel(new GridBagLayout()); // panel to hold the buttons
 		
 		// Create a GridBagConstraints instance
-	    GridBagConstraints gbc = new GridBagConstraints();
-	    gbc.insets = new Insets(10, 10, 10, 10);
+	        GridBagConstraints gbc = new GridBagConstraints();
+	        gbc.insets = new Insets(10, 10, 10, 10);
 
 	    
 		//Add login button
 		button = new JButton("Login");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setPreferredSize(new Dimension(200, 50));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -42,6 +43,7 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		
 		//Add sign-up button
 		button2 = new JButton("Sign-Up");
+		button2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button2.setPreferredSize(new Dimension(200, 50));
 		gbc.gridx = 0;
 		gbc.gridy = 1;
