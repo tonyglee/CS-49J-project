@@ -90,7 +90,7 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 	}
 	
 	public void showFrame() {
-		frame.setVisible(true);;
+		frame.setVisible(true);
 	}
 	
 	// Main to create the windows
