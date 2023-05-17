@@ -93,6 +93,7 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 						complete.dispose();
 						frame.dispose();
 						//add GUI for main page
+						new GUI_Add_New_Customer();
 						break;
 					}
 				}
