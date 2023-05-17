@@ -39,32 +39,38 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 		
 		//add username label
 		label = new JLabel("Username");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label.setBounds(250, 150, 80, 25);
 		panel.add(label);
 		
 		//add username textfield
 		usernameText = new JTextField();
+		usernameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		usernameText.setBounds(325, 150, 165, 25);
 		panel.add(usernameText);
 		
 		//add password label
 		passwordLabel = new JLabel("Password");
+		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		passwordLabel.setBounds(250, 200, 80, 25);
 		panel.add(passwordLabel);
 		
 		//add password textfield
 		passwordText = new JPasswordField();
+		passwordText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		passwordText.setBounds(325, 200, 165, 25);
 		panel.add(passwordText);
 		
 		//add login button
 		button = new JButton("Login");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(325, 240, 100, 30);
 		button.addActionListener(this);
 		panel.add(button);
 		
 		//add back button
 		button2 = new JButton("Back");
+		button2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button2.setBounds(450, 240, 100, 30);
 		button2.addActionListener(this);
 		panel.add(button2);
