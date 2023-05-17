@@ -40,83 +40,103 @@ public class GUI_Signup_Page implements ActionListener{
 		panel.setLayout(null);
 		
 		label = new JLabel("Username");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label.setBounds(100, 50, 80, 25);
 		panel.add(label);
 		
 		usernameText = new JTextField();
+		usernameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		usernameText.setBounds(95, 75, 100, 25);
 		panel.add(usernameText);
 		
 		label8 = new JLabel("Password");
+		label8.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label8.setBounds(225, 50, 80, 25);
 		panel.add(label8);
 		
 		passwordText = new JTextField();
+		passwordText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		passwordText.setBounds(220, 75, 100, 25);
 		panel.add(passwordText);
 		
 		label2 = new JLabel("First Name");
+		label2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label2.setBounds(100, 100, 80, 25);
 		panel.add(label2);
 		
 		firstName = new JTextField();
+		firstName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		firstName.setBounds(95, 125, 100, 25);
 		panel.add(firstName);
 		
 		label3 = new JLabel("Last Name");
+		label3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label3.setBounds(225, 100, 80, 25);
 		panel.add(label3);
 		
 		lastName = new JTextField();
+		lastName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lastName.setBounds(220, 125, 100, 25);
 		panel.add(lastName);
 		
 		label4 = new JLabel("Address");
+		label4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label4.setBounds(100, 150, 80, 25);
 		panel.add(label4);
 		
 		address = new JTextField();
+		address.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		address.setBounds(95, 175, 225, 25);
 		panel.add(address);
 		
 		label5 = new JLabel("City");
+		label5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label5.setBounds(100, 200, 80, 25);
 		panel.add(label5);
 		
 		city = new JTextField();
+		city.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		city.setBounds(95, 225, 100, 25);
 		panel.add(city);
 		
 		label6 = new JLabel("State");
+		label6.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label6.setBounds(220, 200, 80, 25);
 		panel.add(label6);
 		
 		state = new JTextField();
+		state.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		state.setBounds(220, 225, 100, 25);
 		panel.add(state);
 		
 		label7 = new JLabel("Zip Code");
+		label7.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label7.setBounds(100, 250, 80, 25);
 		panel.add(label7);
 		
 		zipCode = new JTextField();
+		zipCode.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		zipCode.setBounds(95, 275, 100, 25);
 		panel.add(zipCode);
 		
 		label9 = new JLabel("Email Address");
+		label9.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label9.setBounds(100, 300, 100, 25);
 		panel.add(label9);
 		
 		email = new JTextField();
+		email.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		email.setBounds(95, 325, 225, 25);
 		panel.add(email);
 		
 		button = new JButton("Sign-Up");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button.setBounds(425, 175, 150, 30);
 		button.addActionListener(this);
 		panel.add(button);
 		
 		button2 = new JButton("Go Back");
+		button2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		button2.setBounds(425, 225, 150, 30);
 		button2.addActionListener(this);
 		panel.add(button2);
