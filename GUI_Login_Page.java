@@ -1,5 +1,3 @@
-package cs49J_Project;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -12,6 +10,9 @@ import javax.swing.*;
 public class GUI_Login_Page extends JFrame implements ActionListener{
 	
 	//private static so that other outside classes cannot access these instance variables
+	private static GUI_Login_Page instance;
+	public String username;
+	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
 	private static JLabel label = new JLabel();
@@ -21,10 +22,15 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 	private static JButton button = new JButton();
 	private static JButton button2 = new JButton();
 	
-	public GUI_Login_Page() {
+	// Create a getter method to retrieve the userName
+	public String getUsername() {
+		return username;
+	}
+	
+	private GUI_Login_Page() {
 		
 		//making the frame
-		frame.setSize(700, 500);
+		frame.setSize(800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		
@@ -33,35 +39,37 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 		
 		//add username label
 		label = new JLabel("Username");
-		label.setBounds(200, 150, 80, 25);
+		label.setBounds(250, 150, 80, 25);
 		panel.add(label);
 		
 		//add username textfield
 		usernameText = new JTextField();
-		usernameText.setBounds(275, 150, 165, 25);
+		usernameText.setBounds(325, 150, 165, 25);
 		panel.add(usernameText);
 		
 		//add password label
 		passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(200, 200, 80, 25);
+		passwordLabel.setBounds(250, 200, 80, 25);
 		panel.add(passwordLabel);
 		
 		//add password textfield
 		passwordText = new JPasswordField();
-		passwordText.setBounds(275, 200, 165, 25);
+		passwordText.setBounds(325, 200, 165, 25);
 		panel.add(passwordText);
 		
 		//add login button
 		button = new JButton("Login");
-		button.setBounds(275, 230, 80, 25);
+		button.setBounds(325, 240, 100, 30);
 		button.addActionListener(this);
 		panel.add(button);
 		
 		//add back button
 		button2 = new JButton("Back");
-		button2.setBounds(425, 230, 80, 25);
+		button2.setBounds(450, 240, 100, 30);
 		button2.addActionListener(this);
 		panel.add(button2);
+		
+		frame.setLocationRelativeTo(null);//컴퓨터 가운데에 창이 나오도록 설정
 		frame.setVisible(true);
 	}
 
@@ -70,7 +78,8 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//gets the username that the user inputed 
-		String userName = usernameText.getText();
+		username = usernameText.getText();
+		
 		//gets the password that the user inputed
 		String passWord = String.valueOf(passwordText.getPassword());
 		//if statement to see which button is being pressed
@@ -86,14 +95,14 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 				//while loop that reads the txt files until there is nothing to be read
 				while((line = br.readLine()) != null) {
 					//if statement to see if the username and password match with what is stored
-					if(line.equals(userName+ "\t" + passWord)) {
+					if(line.equals(username+ "\t" + passWord)) {
 						//if the username and password match add a pop-up message and go to main GUI
 						JFrame complete = new JFrame();
 						JOptionPane.showMessageDialog(complete, "Login");
 						complete.dispose();
 						frame.dispose();
 						//add GUI for main page
-						new GUI_Add_New_Customer();
+						GUI_Add_New_Customer.getInstance().showFrame();
 						break;
 					}
 				}
@@ -104,10 +113,22 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 		//if the back button is pressed
 		else if(e.getSource() == button2) {
 			//go back to Welcome GUI
-			new GUI_Welcome_Page();
+			GUI_Welcome_Page.getInstance().showFrame();
 			//close the login GUI
 			frame.dispose();
 			
 		}
+	}
+	
+	// To Use Same Instance during whole process
+	public static GUI_Login_Page getInstance() {
+		if (instance == null) {
+            instance = new GUI_Login_Page();
+        }
+        return instance;
+    }
+	
+	public static void showFrame() {
+		frame.setVisible(true);
 	}
 }

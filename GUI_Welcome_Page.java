@@ -1,4 +1,4 @@
-package cs49J_Project;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,32 +11,49 @@ import javax.swing.*;
 public class GUI_Welcome_Page extends JFrame implements ActionListener{
 	
 	//private static so that other outside classes cannot access these instance variables
+	private static GUI_Welcome_Page instance;
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
 	private static JButton button = new JButton();
 	private static JButton button2 = new JButton();
+		
+	private GUI_Welcome_Page() {
 	
-	public GUI_Welcome_Page() {
-		
 		//make the frame
-		frame.setSize(700, 500);
+		frame.setSize(800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(panel);
 		
-		//set panel layout
-		panel.setLayout(null);
+		// Create a new JPanel with BorderLayout
+		panel = new JPanel(new BorderLayout());
+		JPanel buttonPanel = new JPanel(new GridBagLayout()); // panel to hold the buttons
 		
-		//add login button
+		// Create a GridBagConstraints instance
+	    GridBagConstraints gbc = new GridBagConstraints();
+	    gbc.insets = new Insets(10, 10, 10, 10);
+
+	    
+		//Add login button
 		button = new JButton("Login");
-		button.setBounds(275, 170, 150, 50);
+		button.setPreferredSize(new Dimension(200, 50));
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		button.addActionListener(this);
-		panel.add(button);
+		buttonPanel.add(button, gbc);
 		
-		//add signup button
+		//Add sign-up button
 		button2 = new JButton("Sign-Up");
-		button2.setBounds(275, 220, 150, 50);
+		button2.setPreferredSize(new Dimension(200, 50));
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		button2.addActionListener(this);
-		panel.add(button2);
+		buttonPanel.add(button2, gbc);
+		
+		// Add the buttonPanel to the center of the panel
+		panel.add(buttonPanel, BorderLayout.CENTER);
+ 		frame.add(panel);
+ 		
+ 		// Make the frame pops up on the screen
+		frame.setLocationRelativeTo(null); // Center the frame on the screen
 		frame.setVisible(true);
 	}
 
@@ -50,21 +67,32 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 			//close the welcome GUI
 			frame.dispose();
 			//open the login GUI
-			new GUI_Login_Page();
+			GUI_Login_Page.getInstance().showFrame();
 		}
-		//if the signup button is pressed
+		//if the sign-up button is pressed
 		else if(e.getSource() == button2) {
 			//close the welcome GUI
 			frame.dispose();
-			//open the signup GUI
-			new GUI_Signup_Page();
+			//open the sign-up GUI
+			GUI_Signup_Page.getInstance().showFrame();
 		}
 		
 	}
 	
-	//main to create the windows
+	// To Use Same Instance during whole process
+	public static GUI_Welcome_Page getInstance() {
+		if (instance == null) {
+			instance = new GUI_Welcome_Page();
+		}
+		return instance;
+	}
+	
+	public void showFrame() {
+		frame.setVisible(true);;
+	}
+	
+	// Main to create the windows
 	public static void main(String[] args) {
-		
-		new GUI_Welcome_Page();
+		getInstance().showFrame();
 	}
 }
