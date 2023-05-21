@@ -30,8 +30,18 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+/**
+ * 
+ * @author Jimin Lee
+ * This code has functions.
+ * 1) [main Panel] Show a customer information table
+ * 2) [main Panel] When user click a value of the table, a customized message generated.
+ * 3) [add Panel] Add new customer information to the SQL
+ * 4) [Both] Menu bar: User(Log out, Exit), About
+ */
 
 public class GUI_Add_New_Customer extends JFrame{
+	
 	private static GUI_Add_New_Customer instance;
 	private String username;
 	
@@ -49,6 +59,10 @@ public class GUI_Add_New_Customer extends JFrame{
 	private static JTextField expiringpoint;
 	private static JTextArea note;
 	
+	/**
+	 * headers: columns of the table
+	 * data: rows of the table (each customer information)
+	 */
 	// Content of the table
 	private String[] headers = new String[] {"Name", "Gender", "Age", "Phone", "E-mail", "Total Point", "Expiring Point", "Note"};
 	private String[][] data = Customer_database.getCustomers();
@@ -56,18 +70,11 @@ public class GUI_Add_New_Customer extends JFrame{
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GUI_Add_New_Customer window = new GUI_Add_New_Customer();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
+	
+	/**
+	 * [Add Panel] Clear the text of the text blank
+	 */
 	//Reset customer information
 	public void clearText() {
 		name.setText("");
@@ -90,6 +97,13 @@ public class GUI_Add_New_Customer extends JFrame{
 
 	/**
 	 * Initialize the contents of the frame.
+	 * [main Panel] Manage and check Customer information using table
+	 * @see [mainPanel] titlePanel: Put 'title' and 'add button' to titlePanel
+	 * @see [mainPanel] tablePanel: Generate scrollable table into the 'CENTER' of the mainPanel 
+	 * @see [main Panel] messagePanel: Automatically generate message including Name, Total point, Expiring point of the customer
+	 * [add Panel] Save new customer information to SQL
+	 * @see [add Panel] submit button: Submit the customer information to SQL -> move to mainPanel
+	 * @see [add Panel] exit button: Exit from addPanel to mainPanel 
 	 */
 	private void initialize() {
 		Customer_database Customer = new Customer_database();
@@ -415,7 +429,11 @@ public class GUI_Add_New_Customer extends JFrame{
 	}
 	
 	/**
-	 * [Frame] Menu Bar
+	 * [Menu Bar] Can use it on main Panel and add Panel
+	 * @see User - Log out: log out and go to the login panel  
+	 * @see User - Exit: exit the program and close the frame
+	 * @see About: Developer Information and the purpose of the program
+	 * @return menu bar
 	 */
 	public JMenuBar menuBar() {
 		JMenuBar bar = new JMenuBar();
@@ -442,7 +460,6 @@ public class GUI_Add_New_Customer extends JFrame{
 				frame.dispose();
 				addPanel.setVisible(false); // Close existing panel
 				mainPanel.setVisible(false); // Close existing panel
-				
 			}
 		});
 		// Exit Function
@@ -469,19 +486,31 @@ public class GUI_Add_New_Customer extends JFrame{
 		return bar;
 	}
 	
+	/**
+	 * Get username from the login page
+	 * @param username: the username used for log in
+	 * To use the username at the end of a message (Sincerely, 'username')
+	 */
 	private GUI_Add_New_Customer(String username) {
 		this.username = username;
 		initialize();
 	}
 	
-	// To Use Same Instance during whole process
+	/**
+	 * If there is no instance about panel that user used, make new instance
+	 * Unless, use the same instance during whole process
+	 * @return the instance called already
+	 */
 	public static GUI_Add_New_Customer getInstance() {
 		if (instance == null) {
 			instance = new GUI_Add_New_Customer();
 		}
 	    return instance;
 	}
-		
+	
+	/**
+	 * Use private frame of another classes
+	 */
 	public static void showFrame() {
 		frame.setVisible(true);
 	}
