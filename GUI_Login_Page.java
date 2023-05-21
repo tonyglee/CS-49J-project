@@ -1,3 +1,6 @@
+package cs49J_Project;
+
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -5,14 +8,18 @@ import java.io.FileReader;
 
 import javax.swing.*;
 
-//The class extends JFrame to allow access to other JFrame in the package
-//The class implements ActionListener to use actionlistener 
+/**
+ * This is a class to make the Login page GUI
+ * 
+ * 
+ * @author Ganhee Lee
+ * @author Jimin Lee
+ */
 public class GUI_Login_Page extends JFrame implements ActionListener{
 	
 	//private static so that other outside classes cannot access these instance variables
 	private static GUI_Login_Page instance;
 	public String username;
-	
 	private static JFrame frame = new JFrame();
 	private static JPanel panel = new JPanel();
 	private static JLabel label = new JLabel();
@@ -22,11 +29,18 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 	private static JButton button = new JButton();
 	private static JButton button2 = new JButton();
 	
-	// Create a getter method to retrieve the userName
+	/**
+	 * gets the username of the user
+	 * 
+	 * @return the username of the user
+	 */
 	public String getUsername() {
 		return username;
 	}
 	
+	/**
+	 * Private login GUI to make the window for the login page
+	 */
 	private GUI_Login_Page() {
 		
 		//making the frame
@@ -79,13 +93,15 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 		frame.setVisible(true);
 	}
 
-	//@param ActionEvent e is the button being pressed
-	//actionPerformed is where we set what action is done when the button is pressed
+	/**
+	 * Takes action after a button is pressed
+	 * 
+	 * @param e is the actionevent of the button being pressed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//gets the username that the user inputed 
 		username = usernameText.getText();
-		
 		//gets the password that the user inputed
 		String passWord = String.valueOf(passwordText.getPassword());
 		//if statement to see which button is being pressed
@@ -126,7 +142,11 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
 		}
 	}
 	
-	// To Use Same Instance during whole process
+	/**
+	 * sets the instance of the welcome GUI to be new to be able to use the page
+	 * 
+	 * @return a new instance of the welcome GUI to be able to use the buttons again
+	 */
 	public static GUI_Login_Page getInstance() {
 		if (instance == null) {
             instance = new GUI_Login_Page();
@@ -134,6 +154,9 @@ public class GUI_Login_Page extends JFrame implements ActionListener{
         return instance;
     }
 	
+	/**
+	 * sets the frame to be visible
+	 */
 	public static void showFrame() {
 		frame.setVisible(true);
 	}

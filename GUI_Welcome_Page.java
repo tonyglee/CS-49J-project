@@ -1,13 +1,18 @@
-
+package cs49J_Project;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
-//The class extends JFrame to allow access to other JFrame in the package
-//The class implements ActionListener to use actionlistener 
+
+/**
+ * This is a class to make the Welcome page GUI
+ * 
+ * 
+ * @author Ganhee Lee
+ * @author Jimin Lee
+ */
 public class GUI_Welcome_Page extends JFrame implements ActionListener{
 	
 	//private static so that other outside classes cannot access these instance variables
@@ -16,7 +21,10 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 	private static JPanel panel = new JPanel();
 	private static JButton button = new JButton();
 	private static JButton button2 = new JButton();
-		
+	
+	/**
+	 * Private welcome GUI to make the window for the welcome page
+	 */
 	private GUI_Welcome_Page() {
 	
 		//make the frame
@@ -28,8 +36,8 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		JPanel buttonPanel = new JPanel(new GridBagLayout()); // panel to hold the buttons
 		
 		// Create a GridBagConstraints instance
-	        GridBagConstraints gbc = new GridBagConstraints();
-	        gbc.insets = new Insets(10, 10, 10, 10);
+	    GridBagConstraints gbc = new GridBagConstraints();
+	    gbc.insets = new Insets(10, 10, 10, 10);
 
 	    
 		//Add login button
@@ -59,8 +67,11 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		frame.setVisible(true);
 	}
 
-	//@param ActionEvent e is the button being pressed
-	//actionPerformed is where we set what action is done when the button is pressed
+	/**
+	 * Takes action after a button is pressed
+	 * 
+	 * @param e is the actionevent of the button being pressed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//if statement to see which button is being pressed
@@ -81,7 +92,11 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		
 	}
 	
-	// To Use Same Instance during whole process
+	/**
+	 * sets the instance of the welcome GUI to be new to be able to use the page
+	 * 
+	 * @return a new instance of the welcome GUI to be able to use the buttons again
+	 */
 	public static GUI_Welcome_Page getInstance() {
 		if (instance == null) {
 			instance = new GUI_Welcome_Page();
@@ -89,11 +104,17 @@ public class GUI_Welcome_Page extends JFrame implements ActionListener{
 		return instance;
 	}
 	
+	/**
+	 * sets the frame to be visible
+	 */
 	public void showFrame() {
 		frame.setVisible(true);
 	}
 	
-	// Main to create the windows
+	/**
+	 * Main method to make the welcome window
+	 * @param args the command line argument
+	 */
 	public static void main(String[] args) {
 		getInstance().showFrame();
 	}

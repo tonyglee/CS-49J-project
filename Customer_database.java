@@ -1,15 +1,34 @@
+package cs49J_Project;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+/**
+ * This is a code to save customer data into SQL database 
+ * 
+ * @author Jimin Lee
+ * @author Ganhee Lee
+ */
 public class Customer_database {
+	
+	/**
+	 * Main method to make the table window
+	 * @param args the command line argument
+	 */
 	public static void main(String[] args) {
 		createTable();
-//		createCustomer("Aba", "Male", "12", "123456789", "alekjf@gijlas", "456", "123", "Oh my god");
 	}
 	
+	
+	/**
+	 * Bring customer information from the SQL database into array list in order
+	 * @see (console) "Data has been fetched"
+	 * @return string array having all of the customer information (One customer information per column)
+	 * @throws Exception in case of invalid, give a message about the error, return null
+	 */
 	public static String[][] getCustomers(){
 		try {
 			Connection con = getConnection();
@@ -39,6 +58,20 @@ public class Customer_database {
 		}
 	}
 	
+	
+	/**
+	 * Insert customer data into the SQL database table 
+	 * @param name: string type customer name
+	 * @param gender: string type customer gender
+	 * @param age: string type customer age
+	 * @param phone: string type customer phone number
+	 * @param email: string type customer email address
+	 * @param totalpoint: string type customer total point
+	 * @param expiringpoint: string type customer expiring point
+	 * @param note: string type extra note about customer
+	 * @see (console) "Data Saving Succeed"
+	 * @throws Exception in case of invalid, give a message about the error
+	 */
 	public static void createCustomer(String name, String gender, String age, String phone, String email, String totalpoint, String expiringpoint, String note) {
 		try {
 			Connection con = getConnection();
@@ -55,6 +88,14 @@ public class Customer_database {
 		}
 	}
 	
+	
+	/**
+	 * Create a customer information table on SQL if it is not exist
+	 * (primary key) id: SQL assigned sequence numbers automatically
+	 * name, gender, age, phone, email, total point, expiring point, note: info collected from user, save as ample storage space
+	 * @see (console) "Table is successfully created"
+	 * @throws Exception in case of invalid, give a message about the error
+	 */
 	public static void createTable() {
 		try {
 			Connection con = getConnection();
@@ -79,19 +120,27 @@ public class Customer_database {
 			System.out.println("Table is successfully created");
 		}
 	}
+	
+	
+	/**
+	 * Connect program to the SQL database
+	 * @return the connection to the online database using designated url, username, password
+	 * @see (console) "DB Connection Succeed"
+	 * @throws Exception in case of invalid, give a message about the error
+	 */
 	public static Connection getConnection() {
 		try {
-			//드라이버 로딩
+			//Driver loading
 			String driver = "com.mysql.cj.jdbc.Driver";
 			System.out.println("Driver Succeeed");
 			
-			//DB 연결
+			//Connect to the database
 			String url = "jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9618359";
 			String username = "sql9618359";
 			String password = "aE9qKc9FaQ";
 			Class.forName(driver);
 			Connection con = DriverManager.getConnection(url, username, password);
-			System.out.println("DB Connection Succeeed");
+			System.out.println("DB Connection Succeed");
 			return con;
 			
 		}catch(Exception e) {
